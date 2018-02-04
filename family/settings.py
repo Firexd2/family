@@ -28,15 +28,6 @@ DEBUG = True
 ALLOWED_HOSTS = ['family.beloglazov.me', '127.0.0.1']
 
 
-NAME = ''
-USER = ''
-PASSWORD = ''
-
-try:
-    from . import dev_settings
-except:
-    pass
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -88,9 +79,9 @@ WSGI_APPLICATION = 'family.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': NAME,
-        'USER': USER,
-        'PASSWORD': PASSWORD,
+        'NAME': '',
+        'USER': '',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '',
     }
@@ -138,6 +129,10 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 try:
-    from . import local_settings
+    from .dev_settings import *
+except:
+    pass
+try:
+    from .local_settings import *
 except:
     pass
