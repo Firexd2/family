@@ -130,9 +130,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 try:
     from . import dev_settings
-except ImportError:
+except:
     pass
 try:
     from . import local_settings
-except ImportError:
+except:
     pass
