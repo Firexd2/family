@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load widget_tweaks %}
 {% block content %}
-    <div style="margin-top: 20px" class="col-sm-6">
+    <div style="margin-top: 20px" class="col-md-6 col-md-offset-3">
         <article style="padding: 0 15px 5px 15px" class="panel panel-default">
             <div  class="panel-heading purple">
                 <h2 class="panel-title">Электронный блокнот питания Максима</h2>
@@ -53,17 +53,16 @@
                     {{ form.puree|add_class:'form-control input-digit'|attr:'placeholder:Пюре' }}
                 </div>
                 <div style="text-align: center" class="col-xs-2">
-                    <label for="toilet">Туалет
+                        <p style="margin: 0">Туалет</p>
                         {{ form.toilet }}
-                    </label>
                 </div>
                 <div class="col-xs-2">
-                    <button style="background: #b700b7; width: 60px; color: white" class="btn btn-default" type="submit">Ок</button>
+                    <button style="background: #b700b7; width: 50px; color: white" class="btn btn-default" type="submit">Ок</button>
                 </div>
             </form>
         </div>
     </div>
-    <div style="margin-top: 20px" class="col-sm-6">
+    <div style="margin-top: 20px" class="col-md-6 col-md-offset-3">
         <div class="info">
             <p>С последнего кормления прошло: <b id="time">
                 {% with info.0 as info %}{{ info }}{% endwith %}:{% with info.1 as info %}{{ info }}{% endwith %}
