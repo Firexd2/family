@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <article style="padding: 0 15px 5px 15px" class="panel panel-default">
+        <div  class="panel-heading purple">
+            <h2 class="panel-title">Электронный блокнот питания Максима</h2>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Дата</th>
+                    <th>Возраст</th>
+                    <th>Смесь</th>
+                    <th>Каша</th>
+                    <th>Пюре</th>
+                    <th>Общее</th>
+                    <th>Туалет</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in object_list %}
+                    <tr>
+                        <th class="time-eat" scope="row">{{ item.date }}</th>
+                        <td>{{ item.age_days }} дней</td>
+                        <td>{{ item.food_fusion }}</td>
+                        <td>{{ item.porridge }}</td>
+                        <td>{{ item.puree }}</td>
+                        <td><b>{{ item.overall_volume }}</b></td>
+                        <td>{{ item.toilet }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </article>
+         <button onclick="location.href='/baby/'" style="position: fixed; bottom: 30px; left:45%;background: #b700b7; width: 120px; color: white" class="btn btn-default" type="submit">На главную</button>
+{% endblock %}

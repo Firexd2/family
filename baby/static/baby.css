@@ -1,0 +1,22 @@
+body {
+    background: rgba(224, 0, 224, 0.25);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+.input-digit {
+    display: inline-block;
+    width: 70px;
+}
+
+.info {
+    border: double fuchsia;
+    margin-bottom: 20px;
+    padding-top: 7px;
+    text-align: center;
+}

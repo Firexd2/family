@@ -1,0 +1,10 @@
+*.pyc
+*~
+__pycache__
+venv
+.idea
+db.sqlite3
+.DS_Store
+*.log
+local_settings.py
+migrations

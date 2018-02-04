@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+    <div style="margin-top: 20px" class="col-sm-6">
+        <article style="padding: 0 15px 5px 15px" class="panel panel-default">
+            <div  class="panel-heading purple">
+                <h2 class="panel-title">Электронный блокнот питания Максима</h2>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Время</th>
+                        <th>Питание</th>
+                        <th>Туалет</th>
+                        <th>Удаление</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in table %}
+                        <tr>
+                            <th class="time-eat" scope="row">{{ item.time }}</th>
+                            <td class="volume" style="cursor: pointer">
+                                <b class="all-volume">{{ item.overall_volume }}</b> мл.
+                                <div hidden class="detail-eat">
+                                    Смесь: <b>{{ item.food_fusion }}</b><br>
+                                    Каша: <b>{{ item.porridge }}</b><br>
+                                    Пюре: <b>{{ item.puree }}</b>
+                                </div>
+                            </td>
+                            <td>{{ item.toilet }}</td>
+                            <td class="delete" style="cursor: pointer"><span style="color: red;font-weight: bold" id="{{ item.id }}">X</span></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </article>
+        <div>
+            <form style="height: 50px" method="POST">{% csrf_token %}
+                <span style="color: red">{{ form.time.errors }}</span>
+                <div class="col-xs-2">
+                    {{ form.time|add_class:'form-control input-digit'|attr:'placeholder:Время' }}
+                </div>
+                <div class="col-xs-2">
+                    {{ form.food_fusion|add_class:'form-control input-digit'|attr:'placeholder:Смесь' }}
+                </div>
+                <div class="col-xs-2">
+                    {{ form.porridge|add_class:'form-control input-digit'|attr:'placeholder:Каша' }}
+                </div>
+                <div class="col-xs-2">
+                    {{ form.puree|add_class:'form-control input-digit'|attr:'placeholder:Пюре' }}
+                </div>
+                <div style="text-align: center" class="col-xs-2">
+                    <label for="toilet">Туалет
+                        {{ form.toilet }}
+                    </label>
+                </div>
+                <div class="col-xs-2">
+                    <button style="background: #b700b7; width: 60px; color: white" class="btn btn-default" type="submit">Ок</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div style="margin-top: 20px" class="col-sm-6">
+        <div class="info">
+            <p>С последнего кормления прошло: <b id="time">
+                {% with info.0 as info %}{{ info }}{% endwith %}:{% with info.1 as info %}{{ info }}{% endwith %}
+            </b></p>
+            <p>Текущий объем: <b id="all-volume"></b> мл.</p>
+            <p>Время предполагаемого кормления: <b id="new-time">
+                {% with info.2 as info %}{{ info }}{% endwith %}:{% with info.3 as info %}{{ info }}{% endwith %}
+            </b></p>
+        </div>
+        <div class="col-xs-4">
+            <button onclick="location.href='/baby/save/'" style="background: #b700b7; width: 120px; color: white" class="btn btn-default" type="submit">Сохранить</button>
+        </div>
+        <div class="col-xs-4">
+            <button onclick="location.href='/baby/history/'" style="background: #b700b7; width: 120px; color: white" class="btn btn-default" type="submit">История</button>
+        </div>
+        <div class="col-xs-4">
+            <button onclick="location.href='/baby/baby_weight/'" style="background: #b700b7; width: 120px; color: white" class="btn btn-default" type="submit">Развитие</button>
+        </div>
+    </div>
+{% endblock %}
